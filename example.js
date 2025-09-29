@@ -1,5 +1,5 @@
 
-var a=25
+var a=25;;
 var b=30
 var c=11
 

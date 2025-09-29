@@ -2,7 +2,7 @@
   "name": "unilint",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
+  "type": "commonjs",
   "main": "index.js",
   "browserslist": [
     "last 2 Chrome versions",
