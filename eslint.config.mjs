@@ -2,14 +2,26 @@ import ids from "./eslint-plugin-identifiers.mjs";
 
 export default [
   {
-    files: ["**/*.{js,ts,tsx}"],
-    languageOptions: { ecmaVersion: "latest", sourceType: "module" },
+    files: ["**/*.{js,jsx,ts,tsx,mjs,cjs}"],
+    languageOptions: { 
+      ecmaVersion: "latest", 
+      sourceType: "module",
+      globals: {
+        console: "readonly",
+        process: "readonly",
+        Buffer: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        global: "readonly",
+        window: "readonly",
+        document: "readonly",
+        fetch: "readonly",
+        Promise: "readonly"
+      }
+    },
     plugins: { ids },
     rules: {
-      "ids/collect-identifiers": ["warn","low"],
-         // "semi": ["error", "always"],
-      // "quotes": ["error", "double"],
-      // "no-unused-vars": "warn"
+      "ids/collect-identifiers": ["warn", "all"]
     }
   }
 ];
