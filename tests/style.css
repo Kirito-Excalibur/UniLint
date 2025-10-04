@@ -1,0 +1,60 @@
+body {
+  max-width: 700px;
+  margin: if(
+    media(width < 700px): 0;
+    else: 20px;
+  ) auto 0;
+}
+
+.ice {
+  --scheme: ice;
+}
+
+.fire {
+  --scheme: fire;
+}
+
+article {
+  padding: 20px;
+  --color1: if(
+    style(--scheme: ice): #03045e;
+    style(--scheme: fire): #621708;
+    else: black;
+  );
+  --color2: if(
+    style(--scheme: ice): #caf0f8;
+    style(--scheme: fire): #ffc971;
+    else: white;
+  );
+
+  color: var(--color1);
+  border: 3px solid var(--color1);
+  background-image: linear-gradient(
+    to left,
+    var(--color2),
+    white,
+    var(--color2)
+  );
+}
+
+aside {
+  color: var(--color2);
+  background-color: var(--color1);
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: if(
+    media(width > 700px): calc(3rem + 2vw);
+    else: 3rem;
+  );
+}
+
+h1::before {
+  content: if(
+    style(--scheme: ice): "❄️ ";
+    style(--scheme: fire): "🔥 ";
+    else: "";
+  );
+}

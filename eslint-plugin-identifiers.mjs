@@ -7,7 +7,7 @@ export default {
         type: "suggestion",
         schema: [
           {
-            enum:["low","high","false"]
+            enum: ["low", "high", "false"]
           }
         ],
         messages: {
@@ -18,71 +18,40 @@ export default {
       },
       create(context) {
 
-        const options=context.options[0] || "high";
+        const options = context.options[0] || "high";
         // const val=options.enum||"high";
 
         // console.log(options)
 
-        const seen = new Set();
+        // const seen = new Set();
+
+
         return {
+
+
+
           Identifier(node) {
-            seen.add(node.name);
+            // seen.add(node.name);
 
             // console.log(node.name);
 
-            if (features?.[node.name]!==undefined) {
+
+            if (features?.[node.name]!==undefined && features[node.name].status?.baseline) {
                 if (features[node.name].status.baseline === options) {
-                  context.report({
-                    node,
-                    messageId: "high",
-                    data: { name: node.name}
-                  });
-                }
+            context.report({
+              loc: node.loc,
+              messageId: options,
+              data: { name: node.name }
+            });
               }
-            },
+            }
+          },
 
-         
+
           "Program:exit"() {
-            // seen.forEach(name => {
 
-            //   if (features?.[name] !== undefined) {
-
-            //     if (features[name].status.baseline === "high") {
-            //       context.report({
-            //         node,
-            //         messageId: "high",
-            //         data: { name: features[name].status.baseline }
-            //       });
-
-            //     }
-
-            //   }
-            // });
-            // console.log(JSON.stringify({
-            //   file: context.getFilename(),
-            //   identifiers: [...seen]
-            // }));
           }
         };
-        // console.log("Plugin loaded");
-        // return {
-
-        //   Identifier(node) {
-
-        //     if(node.name === "a") {
-        //       context.report({
-        //         node,
-        //         messageId: "unexpected-identifier",
-        //         data: { name: node.name }
-        //       });
-        //     }
-
-        //   },
-
-        //   // "Program:exit"() {
-        //   //   console.log(context);
-        //   // }
-        // };
 
       }
     }

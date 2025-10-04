@@ -6,8 +6,8 @@ export default [
     languageOptions: { ecmaVersion: "latest", sourceType: "module" },
     plugins: { ids },
     rules: {
-      "ids/collect-identifiers": ["warn","high"],
-      // "semi": ["error", "always"],
+      "ids/collect-identifiers": ["warn","low"],
+         // "semi": ["error", "always"],
       // "quotes": ["error", "double"],
       // "no-unused-vars": "warn"
     }
